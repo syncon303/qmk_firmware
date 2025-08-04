@@ -21,6 +21,7 @@
 enum planka_layers {
   _QWERTY,
   _COLEMAK,
+  _GAMING,
   _NUMPAD,
   _LOWER,
   _RAISE,
@@ -43,6 +44,26 @@ enum planka_keycodes {
 #define GRV_RSFT RSFT_T(KC_GRV)
 #define QWERTY PDF(_QWERTY)
 #define COLEMAK PDF(_COLEMAK)
+// home row modifier definitions
+// Left-hand home row mods
+#define GUI_A LGUI_T(KC_A)
+#define ALT_S LALT_T(KC_S)
+#define SFT_D LSFT_T(KC_D)
+#define CTL_F LCTL_T(KC_F)
+
+#define ALT_R LALT_T(KC_R)
+#define SFT_S LSFT_T(KC_S)
+#define CTL_T LCTL_T(KC_T)
+
+// Right-hand home row mods
+#define CTL_J RCTL_T(KC_J)
+#define SFT_K RSFT_T(KC_K)
+#define ALT_L LALT_T(KC_L)
+#define GUI_SCLN RGUI_T(KC_SCLN)
+#define CTL_N RCTL_T(KC_N)
+#define SFT_E RSFT_T(KC_E)
+#define ALT_I LALT_T(KC_I)
+#define GUI_O RGUI_T(KC_O)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -59,6 +80,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_RCTL, KC_A,   KC_R,    KC_S,    KC_T,  KC_D,    KC_MINS, KC_EQL,   KC_H, KC_N,  KC_E,    KC_I,    KC_O,    GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_K, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,      KC_SPC,           KC_ENT,    RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    ),
+    [_GAMING] = LAYOUT( /* Default QWERTY */
+        QK_GESC, KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_RCTL, KC_A,   KC_S,    KC_D,    KC_F,  KC_G,    KC_MINS, KC_EQL,   KC_H, KC_J,  KC_K,    KC_L,    KC_SCLN, GRV_RSFT,
+        KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,     KC_SPC,           KC_ENT,     RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
     [_NUMPAD] = LAYOUT( /* 2: Num pad layer */
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_SLASH,    KC_TRNS,

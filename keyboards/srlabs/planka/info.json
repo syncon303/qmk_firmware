@@ -11,7 +11,7 @@
         "mousekey": true,
         "nkro": true
     },
-    "url": "",
+    "url": "https://github.com/syncon303/qmk_firmware/tree/master/keyboards/srlabs/planka",
     "usb": {
         "device_version": "1.0.0",
         "pid": "0x0003",
