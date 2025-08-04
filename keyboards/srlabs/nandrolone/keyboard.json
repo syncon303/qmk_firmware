@@ -7,7 +7,6 @@
     "diode_direction": "ROW2COL",
     "features": {
         "bootmagic": true,
-        "command": false,
         "console": true,
         "extrakey": true,
         "mousekey": true,
@@ -62,7 +61,8 @@
             "protocol": "serial",
             "sync": {
                 "layer_state": true
-            }
+            },
+            "watchdog": true
         }
     },
     "joystick": {

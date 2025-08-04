@@ -1,0 +1,8 @@
+{
+    "keyboard_name": "Planka rev2",
+    "diode_direction": "COL2ROW",
+    "matrix_pins": {
+        "cols": ["D1", "D0", "B3", "B2", "B1", "B0", "E6", "B4", "B5", "B6", "B7", "C6", "C7", "F7"],
+        "rows": ["F0", "F1", "F4", "F5", "F6"]
+    }
+}
