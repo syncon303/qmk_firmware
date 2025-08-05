@@ -43,6 +43,9 @@ enum planka_keycodes {
 #define VD_LEFT C(G(KC_LEFT))
 #define VD_RIGHT C(G(KC_RIGHT))
 
+#define SFT_SPC LSFT_T(KC_SPC)
+#define SFT_ENT RSFT_T(KC_ENT)
+
 // home row modifier definitions
 // Left-hand home row mods
 #define GUI_A LGUI_T(KC_A)
@@ -73,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_RCTL, GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,    KC_MINS,        KC_EQL,  KC_H,    CTL_J,   SFT_K,   ALT_L,   GUI_SCLN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-                                            KC_DEL,  KC_LSFT, KC_LALT,        KC_RALT, KC_RSFT,
+                                            KC_DEL,  SFT_SPC, KC_LALT,        KC_RALT, SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
     /* Colemak default layer */
@@ -83,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_RCTL, GUI_A,   ALT_R,   SFT_S,   CTRL_T,  KC_D,    KC_MINS,        KC_EQL,  KC_H,    CTL_N,   SFT_E,   ALT_I,   GUI_O,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-                                            KC_DEL,  KC_LSFT, KC_LALT,        KC_RALT, KC_RSFT,
+                                            KC_DEL,  SFT_SPC, KC_LALT,        KC_RALT, SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
     [_GAMING] = LAYOUT_split_6x7_6x6(
@@ -187,7 +190,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 enum joystick_modes {
     JOYSTICK_MODE_WHEEL,
-    JOYSTICK_MODE_STICK
+    JOYSTICK_MODE_STICK,
+    JOYSTICK_MODE_MOUSE,
 };
 
 /* oled stuff :) */
@@ -203,8 +207,10 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 static void render_joystick_mode(uint8_t mode, uint8_t posX, uint8_t posY) {
     static const char char_map_wheel_mode [] PROGMEM = {0x9e, 0x9f, 0x00, 0xbe, 0xbf, 0x00, 0xde, 0xdf, 0x00};
     static const char char_map_joystick_mode [] PROGMEM = {0x9c, 0x9d, 0x00, 0xbc, 0xbd, 0x00, 0xdc, 0xdd, 0x00};
+    static const char char_map_mouse_mode [] PROGMEM = {0x9a, 0x9b, 0x00, 0xba, 0xbb, 0x00, 0xda, 0xdb, 0x00};
     oled_set_cursor(posX, posY++);
-    const char *p = (const char *) (mode == JOYSTICK_MODE_WHEEL ? char_map_wheel_mode: char_map_joystick_mode);
+    const char *p = (mode == JOYSTICK_MODE_WHEEL ? char_map_wheel_mode: char_map_joystick_mode);
+    p = (mode == JOYSTICK_MODE_MOUSE ? char_map_mouse_mode: p);
     oled_write_P(p, false); p += 3;
     oled_set_cursor(posX, posY++);
     oled_write_P(p, false); p += 3;
@@ -220,7 +226,11 @@ static void render_info(void) {
     static const char char_map_colemak [] PROGMEM = {
         0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0x00, 0xe6, 0xe7, 0xe8, 0xe9, 0xea, 0xeb, 0x00
     };
-    const char *p = (const char *) (default_layer_state == (1 << _COLEMAK) ? char_map_colemak: char_map_qwerty);
+    static const char char_map_gaming [] PROGMEM = {
+        0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0x00, 0xec, 0xed, 0xee, 0xef, 0xf0, 0xf1, 0x00
+    };
+    const char *p = (default_layer_state == (1 << _COLEMAK) ? char_map_colemak: char_map_qwerty);
+    p = (default_layer_state == (1 << _GAMING) ? char_map_gaming: p);
     oled_set_cursor(0,0);
     oled_write(p, false); p += 7;
     oled_set_cursor(0,1);
@@ -230,13 +240,13 @@ static void render_info(void) {
     char strL2[] = "      ";
     led_t led_state = host_keyboard_led_state();
     if (led_state.caps_lock) {
-        strL1[0] = 0x80; strL1[1] = 0x81; strL2[0] = 0xA0; strL2[1] = 0xA1;
+        strL1[0] = 0x01; strL1[1] = 0x02; strL2[0] = 0x07; strL2[1] = 0x08;
     }
     if (led_state.num_lock) {
-        strL1[2] = 0x82; strL1[3] = 0x83; strL2[2] = 0xA2; strL2[3] = 0xA3;
+        strL1[2] = 0x03; strL1[3] = 0x04; strL2[2] = 0x09; strL2[3] = 0x0B;
     }
     if (led_state.scroll_lock) {
-        strL1[4] = 0x84; strL1[5] = 0x85; strL2[4] = 0xA4; strL2[5] = 0xA5;
+        strL1[4] = 0x05; strL1[5] = 0x06; strL2[4] = 0x0C; strL2[5] = 0x0D;
     }
     oled_set_cursor(0,2);
     oled_write(strL1, false);
@@ -249,21 +259,26 @@ static void render_info(void) {
         case _COLEMAK:
         case _GAMING:
             oled_write_P(PSTR("BASE  "), false);
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
             break;
         case _NUMPAD:
             oled_write_P(PSTR("NUMPAD"), false);
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
             break;
         case _LOWER:
             oled_write_P(PSTR("LOWER "), false);
-            break;
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
+           break;
         case _RAISE:
             oled_write_P(PSTR("RAISE "), false);
+            render_joystick_mode(JOYSTICK_MODE_MOUSE, 7, 1);
             break;
         default:
             oled_write_P(PSTR("ADJUST"), false);
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
     }
-    render_joystick_mode(0, 7, 1);
 }
+
 
 bool oled_task_user(void) {
     render_info();
