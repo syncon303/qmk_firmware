@@ -26,7 +26,9 @@ enum nandrolone_layers {
 enum planka_keycodes {
   LOWER = SAFE_RANGE,
   RAISE,
-  VRSN
+  VRSN,
+  UC_DEG,
+  UC_EURO
 };
 
 #define NUMPAD MO(_NUMPAD)
@@ -111,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_LOWER] = LAYOUT(
         QK_GESC, KC_F1,   KC_F2,   KC_F3,      KC_F4,     KC_F5,   KC_F6,          KC_MUTE, _______, _______, _______, _______,    _______,
-        _______, _______, _______, _______,    _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, _______,    _______,
+        _______, _______, _______, UC_EURO,    _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, UC_DEG,     _______,
         _______, KC_MINS, KC_EQL,  S(KC_MINS), S(KC_EQL), _______, _______,        _______, _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC),
         _______, KC_DEL,  KC_CUT,  KC_COPY,    KC_PASTE,  KC_MENU, _______,        _______, _______, _______, _______, _______,    _______,
         _______, _______, _______, /*scroll*/                      _______,        _______,          KC_HOME, KC_PGDN, KC_PGUP,    KC_END,
@@ -166,6 +168,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
+    case UC_EURO:
+        send_unicode_string("€");
+        return false;
+    case UC_DEG:
+        send_unicode_string("€");
+        return false;
     // case VRSN:
       // if (record->event.pressed) {
         // SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);

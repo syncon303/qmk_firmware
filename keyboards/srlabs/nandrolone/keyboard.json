@@ -11,6 +11,7 @@
         "console": true,
         "extrakey": true,
         "mousekey": true,
+        "unicode": true,
         "encoder": true,
         "joystick": true,
         "pointing_device": true,
