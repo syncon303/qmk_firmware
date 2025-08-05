@@ -1,0 +1,2 @@
+qmk compile -kb srlabs/nandrolone -km via
+cp srlabs_nandrolone_via.uf2 /d/

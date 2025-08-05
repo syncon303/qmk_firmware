@@ -16,6 +16,7 @@
 enum nandrolone_layers {
   _QWERTY,
   _COLEMAK,
+  _GAMING,
   _NUMPAD,
   _LOWER,
   _RAISE,
@@ -38,33 +39,67 @@ enum planka_keycodes {
 #define GRV_RSFT RSFT_T(KC_GRV)
 #define QWERTY PDF(_QWERTY)
 #define COLEMAK PDF(_COLEMAK)
+#define GAMING PDF(_GAMING)
 #define VD_LEFT C(G(KC_LEFT))
 #define VD_RIGHT C(G(KC_RIGHT))
+
+#define SFT_SPC LSFT_T(KC_SPC)
+#define SFT_ENT RSFT_T(KC_ENT)
+
+// home row modifier definitions
+// Left-hand home row mods
+#define GUI_A LGUI_T(KC_A)
+#define ALT_S LALT_T(KC_S)
+#define SFT_D LSFT_T(KC_D)
+#define CTL_F LCTL_T(KC_F)
+
+#define ALT_R LALT_T(KC_R)
+#define SFT_S LSFT_T(KC_S)
+#define CTRL_T LCTL_T(KC_T)
+
+// Right-hand home row mods
+#define CTL_J RCTL_T(KC_J)
+#define SFT_K RSFT_T(KC_K)
+#define ALT_L LALT_T(KC_L)
+#define GUI_SCLN RGUI_T(KC_SCLN)
+#define CTL_N RCTL_T(KC_N)
+#define SFT_E RSFT_T(KC_E)
+#define ALT_I LALT_T(KC_I)
+#define GUI_O RGUI_T(KC_O)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Qwerty default layer */
-    [_QWERTY] = LAYOUT_split_6x7_6x6(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+    [_QWERTY] = LAYOUT(
+        QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,        KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+        KC_RCTL, GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,    KC_MINS,        KC_EQL,  KC_H,    CTL_J,   SFT_K,   ALT_L,   GUI_SCLN,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
+        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+                                            KC_DEL,  SFT_SPC, KC_LALT,        KC_RALT, SFT_ENT,
+                                                     KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
+    ),
+    /* Colemak default layer */
+    [_COLEMAK] = LAYOUT(
+        QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_LBRC,        KC_RBRC, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
+        KC_RCTL, GUI_A,   ALT_R,   SFT_S,   CTRL_T,  KC_D,    KC_MINS,        KC_EQL,  KC_H,    CTL_N,   SFT_E,   ALT_I,   GUI_O,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
+        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+                                            KC_DEL,  SFT_SPC, KC_LALT,        KC_RALT, SFT_ENT,
+                                                     KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
+    ),
+    [_GAMING] = LAYOUT(
+        QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,        KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_RCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_MINS,        KC_EQL,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-                                            KC_DEL,  KC_LSFT, KC_LALT,        KC_RALT, KC_RSFT,
-                                                     KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
-    ),
-    /* Colemak default layer */
-    [_COLEMAK] = LAYOUT_split_6x7_6x6(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_LBRC,        KC_RBRC, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
-        KC_RCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_MINS,        KC_EQL,  KC_H,    KC_N,    KC_E,    KC_I,    KC_O,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-                                            KC_DEL,  KC_LSFT, KC_LALT,        KC_RALT, KC_RSFT,
+                                            KC_DEL,  KC_LSFT, KC_LALT,        KC_RALT, SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
     /* Numpad on right half */
-    [_NUMPAD] = LAYOUT_split_6x7_6x6(
+    [_NUMPAD] = LAYOUT(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,   _______,        KC_NUM,  _______, KC_KP_7, KC_KP_8, KC_KP_9,   KC_KP_SLASH,
         _______, _______, _______, _______, _______,  _______, _______,        _______, _______, KC_KP_4, KC_KP_5, KC_KP_6,   KC_KP_ASTERISK,
         _______, _______, _______, _______, _______,  _______, _______,        _______, _______, KC_KP_1, KC_KP_2, KC_KP_3,   KC_KP_MINUS,
@@ -74,8 +109,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       _______, _______,        _______, _______, _______
     ),
 
-    [_LOWER] = LAYOUT_split_6x7_6x6(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,      KC_F4,     KC_F5,   KC_F6,          KC_MUTE, _______, _______, _______, _______,    _______,
+    [_LOWER] = LAYOUT(
+        QK_GESC, KC_F1,   KC_F2,   KC_F3,      KC_F4,     KC_F5,   KC_F6,          KC_MUTE, _______, _______, _______, _______,    _______,
         _______, _______, _______, _______,    _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, _______,    _______,
         _______, KC_MINS, KC_EQL,  S(KC_MINS), S(KC_EQL), _______, _______,        _______, _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC),
         _______, KC_DEL,  KC_CUT,  KC_COPY,    KC_PASTE,  KC_MENU, _______,        _______, _______, _______, _______, _______,    _______,
@@ -83,8 +118,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                _______,   _______, _______,        _______, _______,
                                                           _______, _______,        _______, _______, _______
     ),
-    /* Raise layer features joystick as a mouse pointer and */
-    [_RAISE] = LAYOUT_split_6x7_6x6(
+    /* Raise layer features joystick as a mouse pointer */
+    [_RAISE] = LAYOUT(
         KC_F13,  KC_F14,  KC_F15,  KC_F16,     KC_F17,     KC_F18,  _______,        KC_F19,  KC_F20,   KC_F21,  KC_F22,    KC_F23,  KC_F24,
         KC_F1,   KC_F2,   KC_F3,   KC_F4,      KC_F5,      KC_F6,   _______,        KC_F7,   KC_F8,    KC_F9,   KC_F10,    KC_F11,  KC_F12,
         _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC), KC_NO,   _______,        VD_LEFT, VD_RIGHT, KC_GRV,  S(KC_GRV), KC_QUOT, S(KC_QUOT),
@@ -94,8 +129,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                            MS_BTN1, MS_BTN3,        _______, _______,  _______
     ),
 
-    [_ADJUST] = LAYOUT_split_6x7_6x6(
-        KC_F13,  QWERTY,  COLEMAK, VRSN,    KC_NO,    KC_NO,   KC_NO,    QK_BOOTLOADER, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    [_ADJUST] = LAYOUT(
+        QK_GESC, QWERTY,  COLEMAK, GAMING,  VRSN,    KC_NO,   KC_NO,    QK_BOOTLOADER, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         KC_INT1, KC_INT2, KC_INT3, KC_INT4, KC_INT5,  KC_INT6, KC_NO,          KC_NO,   KC_LNG1, KC_LNG2, KC_LNG3, KC_LNG4, KC_LNG5,
         KC_INT7, KC_INT8, KC_INT9, KC_NO,   KC_UNDO,  KC_NO,   KC_NO,          KC_NO,   KC_LNG6, KC_AGAIN,KC_LNG7, KC_LNG8, KC_LNG9,
         _______, KC_DEL,  KC_CUT,  KC_COPY, KC_PASTE, KC_MENU, _______,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
@@ -145,6 +180,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_QWERTY] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_COLEMAK] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_GAMING] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_NUMPAD] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_LOWER] = { ENCODER_CCW_CW(LCTL(KC_TAB), LCTL(LSFT(KC_TAB)))},
     [_RAISE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
@@ -154,7 +190,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 enum joystick_modes {
     JOYSTICK_MODE_WHEEL,
-    JOYSTICK_MODE_STICK
+    JOYSTICK_MODE_STICK,
+    JOYSTICK_MODE_MOUSE,
 };
 
 /* oled stuff :) */
@@ -170,8 +207,10 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 static void render_joystick_mode(uint8_t mode, uint8_t posX, uint8_t posY) {
     static const char char_map_wheel_mode [] PROGMEM = {0x9e, 0x9f, 0x00, 0xbe, 0xbf, 0x00, 0xde, 0xdf, 0x00};
     static const char char_map_joystick_mode [] PROGMEM = {0x9c, 0x9d, 0x00, 0xbc, 0xbd, 0x00, 0xdc, 0xdd, 0x00};
+    static const char char_map_mouse_mode [] PROGMEM = {0x9a, 0x9b, 0x00, 0xba, 0xbb, 0x00, 0xda, 0xdb, 0x00};
     oled_set_cursor(posX, posY++);
-    const char *p = (const char *) (mode == JOYSTICK_MODE_WHEEL ? char_map_wheel_mode: char_map_joystick_mode);
+    const char *p = (mode == JOYSTICK_MODE_WHEEL ? char_map_wheel_mode: char_map_joystick_mode);
+    p = (mode == JOYSTICK_MODE_MOUSE ? char_map_mouse_mode: p);
     oled_write_P(p, false); p += 3;
     oled_set_cursor(posX, posY++);
     oled_write_P(p, false); p += 3;
@@ -187,7 +226,11 @@ static void render_info(void) {
     static const char char_map_colemak [] PROGMEM = {
         0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0x00, 0xe6, 0xe7, 0xe8, 0xe9, 0xea, 0xeb, 0x00
     };
-    const char *p = (const char *) (default_layer_state == (1 << _COLEMAK) ? char_map_colemak: char_map_qwerty);
+    static const char char_map_gaming [] PROGMEM = {
+        0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0x00, 0xec, 0xed, 0xee, 0xef, 0xf0, 0xf1, 0x00
+    };
+    const char *p = (default_layer_state == (1 << _COLEMAK) ? char_map_colemak: char_map_qwerty);
+    p = (default_layer_state == (1 << _GAMING) ? char_map_gaming: p);
     oled_set_cursor(0,0);
     oled_write(p, false); p += 7;
     oled_set_cursor(0,1);
@@ -197,13 +240,13 @@ static void render_info(void) {
     char strL2[] = "      ";
     led_t led_state = host_keyboard_led_state();
     if (led_state.caps_lock) {
-        strL1[0] = 0x80; strL1[1] = 0x81; strL2[0] = 0xA0; strL2[1] = 0xA1;
+        strL1[0] = 0x01; strL1[1] = 0x02; strL2[0] = 0x07; strL2[1] = 0x08;
     }
     if (led_state.num_lock) {
-        strL1[2] = 0x82; strL1[3] = 0x83; strL2[2] = 0xA2; strL2[3] = 0xA3;
+        strL1[2] = 0x03; strL1[3] = 0x04; strL2[2] = 0x09; strL2[3] = 0x0B;
     }
     if (led_state.scroll_lock) {
-        strL1[4] = 0x84; strL1[5] = 0x85; strL2[4] = 0xA4; strL2[5] = 0xA5;
+        strL1[4] = 0x05; strL1[5] = 0x06; strL2[4] = 0x0C; strL2[5] = 0x0D;
     }
     oled_set_cursor(0,2);
     oled_write(strL1, false);
@@ -214,22 +257,28 @@ static void render_info(void) {
     switch (get_highest_layer(layer_state | default_layer_state)) {
         case _QWERTY:
         case _COLEMAK:
+        case _GAMING:
             oled_write_P(PSTR("BASE  "), false);
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
             break;
         case _NUMPAD:
             oled_write_P(PSTR("NUMPAD"), false);
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
             break;
         case _LOWER:
             oled_write_P(PSTR("LOWER "), false);
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
             break;
         case _RAISE:
             oled_write_P(PSTR("RAISE "), false);
+            render_joystick_mode(JOYSTICK_MODE_MOUSE, 7, 1);
             break;
         default:
             oled_write_P(PSTR("ADJUST"), false);
+            render_joystick_mode(JOYSTICK_MODE_WHEEL, 7, 1);
     }
-    render_joystick_mode(0, 7, 1);
 }
+
 
 bool oled_task_user(void) {
     render_info();
