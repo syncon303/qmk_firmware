@@ -22,7 +22,7 @@
         "cols": ["GP14", "GP13", "GP12", "GP11", "GP10", "GP9", "GP8"],
         "rows": ["GP2", "GP3", "GP4", "GP5", "GP6", "GP7"]
     },
-    "url": "",
+    "url": "https://github.com/syncon303/Nandrolone",
     "usb": {
         "device_version": "1.0.0",
         "pid": "0x0004",

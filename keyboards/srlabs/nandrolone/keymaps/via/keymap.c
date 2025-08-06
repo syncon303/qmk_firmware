@@ -26,12 +26,13 @@ enum nandrolone_layers {
 enum planka_keycodes {
   LOWER = SAFE_RANGE,
   RAISE,
-  VRSN,
-  UC_DEG,
-  UC_EURO
+  VRSN
 };
 
-#define NUMPAD MO(_NUMPAD)
+#define NUMPAD LT(_NUMPAD, KC_APP)
+#define TAB_LOWER LT(LOWER, KC_APP)
+
+
 #define ALT_PSCR ALGR_T(KC_PSCR)
 #define PLUS S(KC_EQL)
 #define UNDERS S(KC_MINS)
@@ -43,7 +44,7 @@ enum planka_keycodes {
 #define COLEMAK PDF(_COLEMAK)
 #define GAMING PDF(_GAMING)
 #define VD_LEFT C(G(KC_LEFT))
-#define VD_RIGHT C(G(KC_RIGHT))q
+#define VD_RIGHT C(G(KC_RIGHT))
 
 #define SFT_SPC LSFT_T(KC_SPC)
 #define SFT_ENT RSFT_T(KC_ENT)
@@ -67,7 +68,8 @@ enum planka_keycodes {
 #define CTL_N RCTL_T(KC_N)
 #define SFT_E RSFT_T(KC_E)
 #define ALT_I LALT_T(KC_I)
-#define GUI_O RGUI_T(KC_O
+#define GUI_O RGUI_T(KC_O)
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Qwerty default layer */
@@ -104,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,   _______,        KC_NUM,  _______, KC_KP_7, KC_KP_8, KC_KP_9,   KC_KP_SLASH,
         _______, _______, _______, _______, _______,  _______, _______,        _______, _______, KC_KP_4, KC_KP_5, KC_KP_6,   KC_KP_ASTERISK,
         _______, _______, _______, _______, _______,  _______, _______,        _______, _______, KC_KP_1, KC_KP_2, KC_KP_3,   KC_KP_MINUS,
-        _______, _______, KC_CUT,  KC_COPY, KC_PASTE, KC_MENU, _______,        _______, _______, KC_KP_0, KC_NO,   KC_KP_DOT, KC_KP_PLUS,
+        _______, _______, KC_CUT,  KC_COPY, KC_PASTE, KC_MENU, _______,        _______, _______, KC_KP_0, XXXXXXX, KC_KP_DOT, KC_KP_PLUS,
         _______, _______, _______, /*scroll*/                  _______,        _______,          KC_MPRV, KC_MPLY, KC_MSTP,   KC_MNXT,
                                             KC_APP,   _______, _______,        _______, _______,
                                                       _______, _______,        _______, _______, _______
@@ -112,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_LOWER] = LAYOUT(
         QK_GESC, KC_F1,   KC_F2,   KC_F3,      KC_F4,     KC_F5,   KC_F6,          KC_MUTE, _______, _______, _______, _______,    _______,
-        _______, _______, _______, UC_EURO,    _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, UC_DEG,     _______,
+        _______, _______, _______, _______,    _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, _______,    _______,
         _______, KC_MINS, KC_EQL,  S(KC_MINS), S(KC_EQL), _______, _______,        _______, _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC),
         _______, KC_DEL,  KC_CUT,  KC_COPY,    KC_PASTE,  KC_MENU, _______,        _______, _______, _______, _______, _______,    _______,
         _______, _______, _______, /*scroll*/                      _______,        _______,          KC_HOME, KC_PGDN, KC_PGUP,    KC_END,
@@ -121,9 +123,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     /* Raise layer features joystick as a mouse pointer */
     [_RAISE] = LAYOUT(
-        KC_F13,  KC_F14,  KC_F15,  KC_F16,     KC_F17,     KC_F18,  _______,        KC_F19,  KC_F20,   KC_F21,  KC_F22,    KC_F23,  KC_F24,
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,      KC_F5,      KC_F6,   _______,        KC_F7,   KC_F8,    KC_F9,   KC_F10,    KC_F11,  KC_F12,
-        _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC), KC_NO,   _______,        VD_LEFT, VD_RIGHT, KC_GRV,  S(KC_GRV), KC_QUOT, S(KC_QUOT),
+        _______, KC_F13,  KC_F14,  KC_F15,     KC_F16,     KC_F17,  KC_F18,         KC_F19,  KC_F20,   KC_F21,  KC_F22,    KC_F23,  KC_F24,
+        _______, KC_F1,   KC_F2,   KC_F3,      KC_F4,      KC_F5,   KC_F6,          KC_F7,   KC_F8,    KC_F9,   KC_F10,    KC_F11,  KC_F12,
+        _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC), XXXXXXX, _______,        VD_LEFT, VD_RIGHT, KC_GRV,  S(KC_GRV), KC_QUOT, S(KC_QUOT),
         _______, KC_DEL,  KC_CUT,  KC_COPY,    KC_PASTE,   KC_MENU, _______,        _______, KC_CAPS,  KC_INS,  KC_PSCR,   KC_SCRL, KC_PAUS,
         _______, MS_BTN2, MS_BTN2, /*mouse*/                        _______,        _______,           KC_MPRV, KC_MPLY,   KC_MSTP, KC_MNXT,
                                                _______,    MS_BTN4, MS_BTN5,        _______, _______,
@@ -131,10 +133,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_ADJUST] = LAYOUT(
-        QK_GESC, QWERTY,  COLEMAK, GAMING,  VRSN,    KC_NO,   KC_NO,    QK_BOOTLOADER, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-        KC_INT1, KC_INT2, KC_INT3, KC_INT4, KC_INT5,  KC_INT6, KC_NO,          KC_NO,   KC_LNG1, KC_LNG2, KC_LNG3, KC_LNG4, KC_LNG5,
-        KC_INT7, KC_INT8, KC_INT9, KC_NO,   KC_UNDO,  KC_NO,   KC_NO,          KC_NO,   KC_LNG6, KC_AGAIN,KC_LNG7, KC_LNG8, KC_LNG9,
-        _______, KC_DEL,  KC_CUT,  KC_COPY, KC_PASTE, KC_MENU, _______,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        XXXXXXX, QWERTY,  COLEMAK, GAMING,  VRSN,     XXXXXXX, XXXXXXX,  QK_BOOTLOADER, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_INT1, KC_INT2, KC_INT3, KC_INT4, KC_INT5,  KC_INT6, XXXXXXX,        XXXXXXX, KC_LNG1, KC_LNG2, KC_LNG3, KC_LNG4, KC_LNG5,
+        KC_INT7, KC_INT8, KC_INT9, XXXXXXX, KC_UNDO,  XXXXXXX, XXXXXXX,        XXXXXXX, KC_LNG6, KC_AGAIN,KC_LNG7, KC_LNG8, KC_LNG9,
+        _______, KC_DEL,  KC_CUT,  KC_COPY, KC_PASTE, KC_MENU, _______,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         _______, _______, _______, /*scroll*/                  _______,        _______,          KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT,
                                             _______,  _______, _______,        _______, _______,
                                                       _______, _______,        _______, _______, _______
@@ -167,12 +169,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-    case UC_EURO:
-        send_unicode_string("€");
-        return false;
-    case UC_DEG:
-        send_unicode_string("€");
-        return false;
     // case VRSN:
       // if (record->event.pressed) {
         // SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
@@ -288,7 +284,7 @@ static void render_info(void) {
 
 
 bool oled_task_user(void) {
-    if (! is_keyboard_master())
+    if (! is_keyboard_left())
         return false;
     render_info();
     return false;
@@ -327,7 +323,7 @@ uint16_t zero_reads = 0;
 
 // manipulate mouse report based on current mode
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (! is_keyboard_master())
+    if (! is_keyboard_left())
         return mouse_report;
     switch (determine_nubbin_mode()) {
       case _CURSOR:
@@ -376,13 +372,3 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 
     return mouse_report;
 }
-
-
-// int16_t xcen, ycen;  // center values for joystick axes
-
-// void keyboard_post_init_user(void) {
-//     joystick_read_axes();
-//     xcen = joystick_state.axes[0];
-//     ycen = joystick_state.axes[1];
-//     uprintf("Joystick center @ %d, %d\n", xcen, ycen);
-// }
