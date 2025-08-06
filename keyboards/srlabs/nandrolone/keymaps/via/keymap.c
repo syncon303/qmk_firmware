@@ -48,6 +48,9 @@ enum planka_keycodes {
 
 #define SFT_SPC LSFT_T(KC_SPC)
 #define SFT_ENT RSFT_T(KC_ENT)
+#define ALT_TAB LALT_T(KC_TAB)
+#define RALT_TAB RALT_T(KC_TAB)
+
 
 // home row modifier definitions
 // Left-hand home row mods
@@ -79,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_RCTL, GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,    KC_MINS,        KC_EQL,  KC_H,    CTL_J,   SFT_K,   ALT_L,   GUI_SCLN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-                                            KC_DEL,  SFT_SPC, KC_LALT,        KC_RALT, SFT_ENT,
+                                            KC_DEL,  SFT_SPC, ALT_TAB,        RALT_TAB,SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
     /* Colemak default layer */
@@ -89,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_RCTL, GUI_A,   ALT_R,   SFT_S,   CTRL_T,  KC_D,    KC_MINS,        KC_EQL,  KC_H,    CTL_N,   SFT_E,   ALT_I,   GUI_O,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOWER,          RAISE,            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-                                            KC_DEL,  SFT_SPC, KC_LALT,        KC_RALT, SFT_ENT,
+                                            KC_DEL,  SFT_SPC, ALT_TAB,        RALT_TAB,SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
     [_GAMING] = LAYOUT(
