@@ -8,12 +8,12 @@
     "features": {
         "bootmagic": true,
         "command": false,
-        "console": true,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "unicode": true,
         "encoder": true,
-        "joystick": true,
+        "joystick": false,
         "pointing_device": true,
         "oled": true,
         "nkro": true
@@ -63,8 +63,8 @@
             "protocol": "serial",
             "sync": {
                 "matrix_state": true,
-                "layer_state": true,
-                "modifiers": true
+                "layer_state": false,
+                "modifiers": false
             }
 
         }

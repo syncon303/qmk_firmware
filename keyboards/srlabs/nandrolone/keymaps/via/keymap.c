@@ -43,7 +43,7 @@ enum planka_keycodes {
 #define COLEMAK PDF(_COLEMAK)
 #define GAMING PDF(_GAMING)
 #define VD_LEFT C(G(KC_LEFT))
-#define VD_RIGHT C(G(KC_RIGHT))
+#define VD_RIGHT C(G(KC_RIGHT))q
 
 #define SFT_SPC LSFT_T(KC_SPC)
 #define SFT_ENT RSFT_T(KC_ENT)
@@ -67,13 +67,12 @@ enum planka_keycodes {
 #define CTL_N RCTL_T(KC_N)
 #define SFT_E RSFT_T(KC_E)
 #define ALT_I LALT_T(KC_I)
-#define GUI_O RGUI_T(KC_O)
-
+#define GUI_O RGUI_T(KC_O
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Qwerty default layer */
     [_QWERTY] = LAYOUT(
-        QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    QK_GESC,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,        KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_RCTL, GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,    KC_MINS,        KC_EQL,  KC_H,    CTL_J,   SFT_K,   ALT_L,   GUI_SCLN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
@@ -83,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     /* Colemak default layer */
     [_COLEMAK] = LAYOUT(
-        QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    QK_GESC,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_LBRC,        KC_RBRC, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
         KC_RCTL, GUI_A,   ALT_R,   SFT_S,   CTRL_T,  KC_D,    KC_MINS,        KC_EQL,  KC_H,    CTL_N,   SFT_E,   ALT_I,   GUI_O,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
@@ -92,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
     [_GAMING] = LAYOUT(
-        QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    QK_GESC,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,        KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_RCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_MINS,        KC_EQL,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
