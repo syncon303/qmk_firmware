@@ -93,25 +93,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,     KC_SPC,           KC_ENT,     RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
     [_NUMPAD] = LAYOUT( /* 2: Num pad layer */
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_SLASH,    KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_KP_4, KC_KP_5, KC_KP_6, KC_KP_ASTERISK, KC_NUM,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_KP_1, KC_KP_2, KC_KP_3, KC_KP_MINUS,    KC_TRNS,
-        KC_TRNS, KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_KP_0, KC_NO,  KC_KP_DOT,KC_KP_PLUS,     KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,         KC_TRNS,      KC_TRNS, KC_MPRV, KC_MPLY, KC_MSTP,        KC_MNXT
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_SLASH,    _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_KP_4, KC_KP_5, KC_KP_6, KC_KP_ASTERISK, KC_NUM,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_KP_1, KC_KP_2, KC_KP_3, KC_KP_MINUS,    _______,
+        _______, KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT, _______, _______, _______, _______, KC_KP_0, KC_NO,  KC_KP_DOT,KC_KP_PLUS,     _______,
+        _______, _______, _______, _______, _______,      _______,         _______,      _______, KC_MPRV, KC_MPLY, KC_MSTP,        KC_MNXT
     ),
     [_LOWER] = LAYOUT( /* fn1 */
-        KC_TRNS, KC_F1,   KC_F2,    KC_F3,   KC_F4,        KC_F5,   KC_F6,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS,       KC_TRNS,
-        KC_TRNS, MCR_C,   MCR_S,    MCR_Z,   KC_TRNS,      KC_F7,   KC_F8,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS,       KC_TRNS,
-        KC_TRNS, KC_MINS, KC_EQL,   UNDERS,  PLUS,         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC, LSFT(KC_LBRC), LSFT(KC_RBRC), KC_TRNS,
-        KC_TRNS, KC_UNDO, KC_AGAIN, KC_GRV,  LSFT(KC_GRV), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS,       KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,           KC_TRNS,         KC_TRNS,      KC_TRNS, KC_HOME, KC_PGDN,       KC_PGUP,       KC_END
+        _______, KC_F1,   KC_F2,    KC_F3,   KC_F4,        KC_F5,   KC_F6,   _______, _______, _______, _______, _______,       _______,       _______,
+        _______, MCR_C,   MCR_S,    MCR_Z,   _______,      KC_F7,   KC_F8,   _______, _______, _______, _______, _______,       _______,       _______,
+        _______, KC_MINS, KC_EQL,   UNDERS,  PLUS,         _______, _______, _______, _______, KC_LBRC, KC_RBRC, LSFT(KC_LBRC), LSFT(KC_RBRC), _______,
+        _______, KC_UNDO, KC_AGAIN, KC_GRV,  LSFT(KC_GRV), _______, _______, _______, _______, _______, _______, _______,       _______,       _______,
+        _______, _______, _______,  _______, _______,           _______,         _______,      _______, KC_HOME, KC_PGDN,       KC_PGUP,       KC_END
     ),
     [_RAISE] = LAYOUT( /* fn2 */
-        KC_F13,  KC_F14,  KC_F15,  KC_F16,        KC_F17,        KC_F18,  KC_NO, KC_TRNS, KC_F19,  KC_F20, KC_F21,       KC_F22,  KC_F23,        KC_F24,
+        KC_F13,  KC_F14,  KC_F15,  KC_F16,        KC_F17,        KC_F18,  KC_NO, _______, KC_F19,  KC_F20, KC_F21,       KC_F22,  KC_F23,        KC_F24,
         KC_F1,   KC_F2,   KC_F3,   KC_F4,         KC_F5,         KC_F6,   KC_NO, KC_NO,   KC_F7,   KC_F8,  KC_F9,        KC_F10,  KC_F11,        KC_F12,
-        KC_TRNS, KC_LBRC, KC_RBRC, LSFT(KC_LBRC), LSFT(KC_RBRC), KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_GRV, LSFT(KC_GRV), KC_QUOT, LSFT(KC_QUOT), KC_TRNS,
-        KC_TRNS, KC_DEL,  KC_CUT,  KC_COPY,       KC_PASTE,      KC_MENU, KC_NO, KC_TRNS, KC_CAPS, KC_INS, KC_PSCR,      KC_SCRL, KC_PAUS,       KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS,          KC_TRNS,         KC_TRNS,      KC_TRNS,KC_MUTE,      KC_VOLD, KC_VOLU,       KC_MPLY
+        _______, KC_LBRC, KC_RBRC, LSFT(KC_LBRC), LSFT(KC_RBRC), KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_GRV, LSFT(KC_GRV), KC_QUOT, LSFT(KC_QUOT), _______,
+        _______, KC_DEL,  KC_CUT,  KC_COPY,       KC_PASTE,      KC_MENU, KC_NO, _______, KC_CAPS, KC_INS, KC_PSCR,      KC_SCRL, KC_PAUS,       _______,
+        _______, _______, _______, _______,       _______,          _______,         _______,      _______,KC_MUTE,      KC_VOLD, KC_VOLU,       KC_MPLY
     ),
     [_ADJUST] = LAYOUT( /* fn1+fn2 */
         QK_GESC, QWERTY,  COLEMAK, GAMING,  VRSN,   KC_NO,   KC_NO,QK_BOOTLOADER,KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,

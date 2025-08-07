@@ -252,7 +252,7 @@ static void render_info(void) {
         strL1[2] = 0x03; strL1[3] = 0x04; strL2[2] = 0x09; strL2[3] = 0x0B;
     }
     if (led_state.scroll_lock) {
-        strL1[4] = 0x05; strL1[5] = 0x06; strL2[4] = 0x0C; strL2[5] = 0x0D;
+        strL1[4] = 0x05; strL1[5] = 0x06; strL2[4] = 0x0C; strL2[5] = 0x0E;
     }
     oled_set_cursor(0,2);
     oled_write(strL1, false);
@@ -326,8 +326,11 @@ uint16_t zero_reads = 0;
 
 // manipulate mouse report based on current mode
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (! is_keyboard_left())
+    if (! is_keyboard_left()) {
+        mouse_report.x = 0;
+        mouse_report.y = 0;
         return mouse_report;
+    }
     switch (determine_nubbin_mode()) {
       case _CURSOR:
         mouse_report.x = CURSOR_SPEED * mouse_report.x/100;

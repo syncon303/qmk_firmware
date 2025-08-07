@@ -14,9 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-// #include "debug.h"
-// #include "action_layer.h"
-// #include "version.h"
 
 enum planka_layers {
   _QWERTY,
@@ -36,14 +33,21 @@ enum planka_keycodes {
 
 #define NUMPAD MO(_NUMPAD)
 #define ALT_PSCR ALGR_T(KC_PSCR)
-#define PLUS LSFT(KC_EQL)
-#define UNDERS LSFT(KC_MINS)
+#define PLUS S(KC_EQL)
+#define UNDERS S(KC_MINS)
 #define MCR_C RALT(KC_C)
 #define MCR_S RALT(KC_S)
 #define MCR_Z RALT(KC_Z)
 #define GRV_RSFT RSFT_T(KC_GRV)
 #define QWERTY PDF(_QWERTY)
 #define COLEMAK PDF(_COLEMAK)
+#define GAMING PDF(_GAMING)
+#define VD_LEFT C(G(KC_LEFT))
+#define VD_RIGHT C(G(KC_RIGHT))
+
+#define SFT_SPC LSFT_T(KC_SPC)
+#define SFT_ENT RSFT_T(KC_ENT)
+
 // home row modifier definitions
 // Left-hand home row mods
 #define GUI_A LGUI_T(KC_A)
@@ -53,7 +57,7 @@ enum planka_keycodes {
 
 #define ALT_R LALT_T(KC_R)
 #define SFT_S LSFT_T(KC_S)
-#define CTL_T LCTL_T(KC_T)
+#define CTRL_T LCTL_T(KC_T)
 
 // Right-hand home row mods
 #define CTL_J RCTL_T(KC_J)
@@ -68,21 +72,21 @@ enum planka_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT( /* Default QWERTY */
-        QK_GESC, KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
-        KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,    KC_BSLS,
-        KC_RCTL, KC_A,   KC_S,    KC_D,    KC_F,  KC_G,    KC_MINS, KC_EQL,   KC_H, KC_J,  KC_K,    KC_L,    KC_SCLN, GRV_RSFT,
-        KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,     KC_SPC,           KC_ENT,     RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+        KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,     KC_BSPC,
+        KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,     KC_BSLS,
+        KC_RCTL, GUI_A,  ALT_S,   SFT_D,   CTL_F, KC_G,    KC_MINS, KC_EQL,   KC_H, CTL_J, SFT_K,   ALT_L,   GUI_SCLN, GRV_RSFT,
+        KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,    SFT_SPC,          SFT_ENT,     RAISE, KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
     [_COLEMAK] = LAYOUT( /* Default Colemak */
-        QK_GESC, KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,   KC_W,    KC_F,    KC_P,  KC_G,    KC_LBRC, KC_RBRC,  KC_J, KC_L,  KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
-        KC_RCTL, KC_A,   KC_R,    KC_S,    KC_T,  KC_D,    KC_MINS, KC_EQL,   KC_H, KC_N,  KC_E,    KC_I,    KC_O,    GRV_RSFT,
+        KC_RCTL, GUI_A,  ALT_R,   SFT_S,   CTRL_T,KC_D,    KC_MINS, KC_EQL,   KC_H, CTL_N, SFT_E,   ALT_I,   GUI_O,   GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_K, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,      KC_SPC,           KC_ENT,    RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,     SFT_SPC,          SFT_ENT,    RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
     [_GAMING] = LAYOUT( /* Default QWERTY */
-        QK_GESC, KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,    KC_BSLS,
         KC_RCTL, KC_A,   KC_S,    KC_D,    KC_F,  KC_G,    KC_MINS, KC_EQL,   KC_H, KC_J,  KC_K,    KC_L,    KC_SCLN, GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
@@ -124,19 +128,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        print("mode just switched to qwerty and this is a huge string\n");
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
@@ -146,7 +137,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
-      break;
+
     case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
@@ -156,7 +147,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
-      break;
+
     // case VRSN:
       // if (record->event.pressed) {
         // SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);

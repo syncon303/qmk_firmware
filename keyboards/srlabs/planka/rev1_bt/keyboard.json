@@ -1,0 +1,14 @@
+{
+    "features": {
+        "bluetooth": true
+    },
+    "keyboard_name": "Planka prototype",
+    "diode_direction": "ROW2COL",
+    "bluetooth": {
+        "driver": "rn42"
+    },
+    "matrix_pins": {
+        "cols": ["E6", "B0", "B1", "B2", "B3", "D0", "D1", "B4", "B5", "B6", "B7", "C6", "C7", "F7"],
+        "rows": ["F6", "F5", "F4", "F1", "F0"]
+    }
+}
