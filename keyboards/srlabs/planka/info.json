@@ -2,7 +2,7 @@
     "manufacturer": "Spider RooM Labs",
     "keyboard_name": "Planka",
     "maintainer": "syncon303",
-    "bootloader": "atmel-dfu",
+    "bootloader": "caterina",
     "processor": "atmega32u4",
     "features": {
         "bootmagic": false,
