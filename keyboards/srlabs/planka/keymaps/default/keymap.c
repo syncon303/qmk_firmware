@@ -20,7 +20,7 @@ enum planka_layers {
   _COLEMAK,
   _GAMING,
   _NUMPAD,
-  _LOWER,
+  _LOWER=4,
   _RAISE,
   _ADJUST
 };
@@ -31,7 +31,9 @@ enum planka_keycodes {
   VRSN
 };
 
-#define NUMPAD MO(_NUMPAD)
+// #define NUMPAD MO(_NUMPAD)
+#define NUMPAD LT(_NUMPAD, KC_APP)
+
 #define ALT_PSCR ALGR_T(KC_PSCR)
 #define PLUS S(KC_EQL)
 #define UNDERS S(KC_MINS)
@@ -76,21 +78,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,     KC_BSLS,
         KC_RCTL, GUI_A,  ALT_S,   SFT_D,   CTL_F, KC_G,    KC_MINS, KC_EQL,   KC_H, CTL_J, SFT_K,   ALT_L,   GUI_SCLN, GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,    SFT_SPC,          SFT_ENT,     RAISE, KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, TL_LOWR,  SFT_SPC,          SFT_ENT,   TL_UPPR, KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
     [_COLEMAK] = LAYOUT( /* Default Colemak */
         KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,   KC_W,    KC_F,    KC_P,  KC_G,    KC_LBRC, KC_RBRC,  KC_J, KC_L,  KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
         KC_RCTL, GUI_A,  ALT_R,   SFT_S,   CTRL_T,KC_D,    KC_MINS, KC_EQL,   KC_H, CTL_N, SFT_E,   ALT_I,   GUI_O,   GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_K, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,     SFT_SPC,          SFT_ENT,    RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, TL_LOWR,   SFT_SPC,          SFT_ENT,  TL_UPPR, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
     [_GAMING] = LAYOUT( /* Default QWERTY */
         KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,    KC_BSLS,
         KC_RCTL, KC_A,   KC_S,    KC_D,    KC_F,  KC_G,    KC_MINS, KC_EQL,   KC_H, KC_J,  KC_K,    KC_L,    KC_SCLN, GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOWER,     KC_SPC,           KC_ENT,     RAISE, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, TL_LOWR,   KC_SPC,           KC_ENT,   TL_UPPR, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
     [_NUMPAD] = LAYOUT( /* 2: Num pad layer */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_SLASH,    _______,
@@ -114,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______,       _______,          _______,         _______,      _______,KC_MUTE,      KC_VOLD, KC_VOLU,       KC_MPLY
     ),
     [_ADJUST] = LAYOUT( /* fn1+fn2 */
-        QK_GESC, QWERTY,  COLEMAK, VRSN,    KC_NO,   KC_NO,   KC_NO,QK_BOOTLOADER,KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        QK_GESC, QWERTY,  COLEMAK, GAMING,  VRSN,   KC_NO,   KC_NO,QK_BOOTLOADER,KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         KC_INT1, KC_INT2, KC_INT3, KC_INT4, KC_INT5, KC_INT6, KC_NO,   KC_NO,   KC_LNG1, KC_LNG2, KC_LNG3, KC_LNG4, KC_LNG5, KC_NO,
         KC_INT7, KC_INT8, KC_INT9, KC_NO,   KC_UNDO, KC_NO,   KC_NO,   KC_NO,   KC_LNG6, KC_AGAIN,KC_LNG7, KC_LNG8, KC_LNG9, KC_NO,
         _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_WAKE,
@@ -122,31 +124,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
+// layer_state_t layer_state_set_user(layer_state_t state) {
+//   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+// }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);  // if raise and lower are active, switch to adjust layer
-      } else {
-        layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
+    // case LOWER:
+    //   if (record->event.pressed) {
+    //     layer_on(_LOWER);
+    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);  // if raise and lower are active, switch to adjust layer
+    //   } else {
+    //     layer_off(_LOWER);
+    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
+    //   }
+    //   return false;
 
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
+    // case RAISE:
+    //   if (record->event.pressed) {
+    //     layer_on(_RAISE);
+    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
+    //   } else {
+    //     layer_off(_RAISE);
+    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
+    //   }
+    //   return false;
 
     // case VRSN:
       // if (record->event.pressed) {
