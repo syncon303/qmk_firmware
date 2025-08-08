@@ -33,6 +33,8 @@ enum planka_keycodes {
 
 // #define NUMPAD MO(_NUMPAD)
 #define NUMPAD LT(_NUMPAD, KC_APP)
+#define LOW_DEL LT(0, KC_DEL)
+#define UP_BSPC LT(0, KC_BSPC)
 
 #define ALT_PSCR ALGR_T(KC_PSCR)
 #define PLUS S(KC_EQL)
@@ -50,7 +52,7 @@ enum planka_keycodes {
 #define SFT_SPC LSFT_T(KC_SPC)
 #define SFT_ENT RSFT_T(KC_ENT)
 
-// home row modifier definitions
+/* home row modifier definitions  */
 // Left-hand home row mods
 #define GUI_A LGUI_T(KC_A)
 #define ALT_S LALT_T(KC_S)
@@ -73,26 +75,27 @@ enum planka_keycodes {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT( /* Default QWERTY */
+    [_QWERTY] = LAYOUT( /* Default QWERTY.  */
         KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,     KC_BSPC,
         KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,     KC_BSLS,
         KC_RCTL, GUI_A,  ALT_S,   SFT_D,   CTL_F, KC_G,    KC_MINS, KC_EQL,   KC_H, CTL_J, SFT_K,   ALT_L,   GUI_SCLN, GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, TL_LOWR,  SFT_SPC,          SFT_ENT,   TL_UPPR, KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOW_DEL,    SFT_SPC,          SFT_ENT,  UP_BSPC,KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
-    [_COLEMAK] = LAYOUT( /* Default Colemak */
+    [_COLEMAK] = LAYOUT( /* Default Colemak. */
+        /* Note: Since layer 0 (qwerty) is always on, Colemak layer might only contain necessary changes to it. */
         KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,   KC_W,    KC_F,    KC_P,  KC_G,    KC_LBRC, KC_RBRC,  KC_J, KC_L,  KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
         KC_RCTL, GUI_A,  ALT_R,   SFT_S,   CTRL_T,KC_D,    KC_MINS, KC_EQL,   KC_H, CTL_N, SFT_E,   ALT_I,   GUI_O,   GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_K, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, TL_LOWR,   SFT_SPC,          SFT_ENT,  TL_UPPR, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOW_DEL,    SFT_SPC,          SFT_ENT,  UP_BSPC,KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
     [_GAMING] = LAYOUT( /* Default QWERTY */
         KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,  KC_5,    KC_HOME, ALT_PSCR, KC_6, KC_7,  KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,  KC_T,    KC_LBRC, KC_RBRC,  KC_Y, KC_U,  KC_I,    KC_O,    KC_P,    KC_BSLS,
         KC_RCTL, KC_A,   KC_S,    KC_D,    KC_F,  KC_G,    KC_MINS, KC_EQL,   KC_H, KC_J,  KC_K,    KC_L,    KC_SCLN, GRV_RSFT,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_QUOT, KC_DEL,   KC_N, KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, TL_LOWR,   KC_SPC,           KC_ENT,   TL_UPPR, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+        KC_LCTL, NUMPAD, KC_LGUI, KC_LALT, LOW_DEL,    KC_SPC,           KC_ENT,   UP_BSPC,KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
     ),
     [_NUMPAD] = LAYOUT( /* 2: Num pad layer */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_SLASH,    _______,
@@ -124,31 +127,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-// }
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // case LOWER:
-    //   if (record->event.pressed) {
-    //     layer_on(_LOWER);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);  // if raise and lower are active, switch to adjust layer
-    //   } else {
-    //     layer_off(_LOWER);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
-    //   }
-    //   return false;
+    case LOW_DEL:
+      if (!record->tap.count) {  // intercept hold function to set layer
+        if (record->event.pressed) {
+            layer_on(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);  // if raise and lower are active, switch to adjust layer
+        }
+        else {
+            layer_off(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        return false;
+      }
+      return true;
 
-    // case RAISE:
-    //   if (record->event.pressed) {
-    //     layer_on(_RAISE);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
-    //   } else {
-    //     layer_off(_RAISE);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
-    //   }
-    //   return false;
+    case UP_BSPC:
+      if (!record->tap.count) { // intercept hold function to set layer
+        if (record->event.pressed) {
+            layer_on(_RAISE);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        else {
+            layer_off(_RAISE);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        return false;
+      }
+      return true;
 
     // case VRSN:
       // if (record->event.pressed) {
