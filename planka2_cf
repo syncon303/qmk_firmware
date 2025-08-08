@@ -1,0 +1,2 @@
+qmk compile -kb srlabs/planka/rev2 -km default
+qmk flash srlabs_planka_rev2_default.hex 

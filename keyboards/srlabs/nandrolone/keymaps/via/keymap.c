@@ -16,13 +16,15 @@ enum nandrolone_layers {
 enum planka_keycodes {
   LOWER = SAFE_RANGE,
   RAISE,
+  SYMB_DEG,
+  SYMB_EURO,
   VRSN
 };
 
 // #define NUMPAD MO(_NUMPAD)
 #define NUMPAD LT(_NUMPAD, KC_APP)
-// #define TAB_LOWER LT(LOWER, KC_APP)
-
+#define LOW_DEL LT(0, KC_DEL)
+#define UP_BSPC LT(0, KC_BSPC)
 
 #define ALT_PSCR ALGR_T(KC_PSCR)
 #define PLUS S(KC_EQL)
@@ -43,7 +45,7 @@ enum planka_keycodes {
 #define RALT_TAB RALT_T(KC_TAB)
 
 
-// home row modifier definitions
+/* home row modifier definitions  */
 // Left-hand home row mods
 #define GUI_A LGUI_T(KC_A)
 #define ALT_S LALT_T(KC_S)
@@ -64,6 +66,9 @@ enum planka_keycodes {
 #define ALT_I LALT_T(KC_I)
 #define GUI_O RGUI_T(KC_O)
 
+#define UC_DEG 0x00B0
+#define UC_EURO 0x20AC
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Qwerty default layer */
@@ -72,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,        KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_RCTL, GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,    KC_MINS,        KC_EQL,  KC_H,    CTL_J,   SFT_K,   ALT_L,   GUI_SCLN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 TL_LOWR,        TL_UPPR,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOW_DEL,        UP_BSPC,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
                                             KC_DEL,  SFT_SPC, ALT_TAB,        RALT_TAB,SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
@@ -82,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_LBRC,        KC_RBRC, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
         KC_RCTL, GUI_A,   ALT_R,   SFT_S,   CTRL_T,  KC_D,    KC_MINS,        KC_EQL,  KC_H,    CTL_N,   SFT_E,   ALT_I,   GUI_O,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 TL_LOWR,        TL_UPPR,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOW_DEL,        UP_BSPC,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
                                             KC_DEL,  SFT_SPC, ALT_TAB,        RALT_TAB,SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
@@ -91,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,        KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_RCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_MINS,        KC_EQL,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 TL_LOWR,        TL_UPPR,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+        KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOW_DEL,        UP_BSPC,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
                                             KC_DEL,  KC_LSFT, KC_LALT,        KC_RALT, SFT_ENT,
                                                      KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
     ),
@@ -108,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_LOWER] = LAYOUT(
         QK_GESC, KC_F1,   KC_F2,   KC_F3,      KC_F4,     KC_F5,   KC_F6,          KC_MUTE, _______, _______, _______, _______,    _______,
-        _______, _______, _______, _______,    _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, _______,    _______,
+        _______, _______, _______, SYMB_EURO,  _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, SYMB_DEG,   _______,
         _______, KC_MINS, KC_EQL,  S(KC_MINS), S(KC_EQL), _______, _______,        _______, _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC),
         _______, KC_DEL,  KC_CUT,  KC_COPY,    KC_PASTE,  KC_MENU, _______,        _______, _______, _______, _______, _______,    _______,
         _______, _______, _______, /*scroll*/                      _______,        _______,          KC_HOME, KC_PGDN, KC_PGUP,    KC_END,
@@ -137,38 +142,58 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-// }
+void matrix_init_user(void)
+{
+    set_unicode_input_mode(UNICODE_MODE_WINDOWS);  /* See https://jayliu50.github.io/qmk-cheatsheet/ */
+}
+
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // case LOWER:
-    //   if (record->event.pressed) {
-    //     layer_on(_LOWER);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);  // if raise and lower are active, switch to adjust layer
-    //   } else {
-    //     layer_off(_LOWER);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
-    //   }
-    //   return false;
+    case LOW_DEL:
+      if (!record->tap.count) {  // intercept hold function to set layer
+        if (record->event.pressed) {
+            layer_on(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);  // if raise and lower are active, switch to adjust layer
+        }
+        else {
+            layer_off(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        return false;
+      }
+      return true;
 
-    // case RAISE:
-    //   if (record->event.pressed) {
-    //     layer_on(_RAISE);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
-    //   } else {
-    //     layer_off(_RAISE);
-    //     update_tri_layer(_LOWER, _RAISE, _ADJUST);
-    //   }
-    //   return false;
+    case UP_BSPC:
+      if (!record->tap.count) { // intercept hold function to set layer
+        if (record->event.pressed) {
+            layer_on(_RAISE);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        else {
+            layer_off(_RAISE);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        return false;
+      }
+      return true;
+    case SYMB_DEG:
+      register_unicode(UC_DEG);
+      return false;
 
+    case SYMB_EURO:
+      register_unicode(UC_EURO);
+      return false;
     // case VRSN:
       // if (record->event.pressed) {
         // SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
       // }
       // return false;
-      // break;
   }
   return true;
 }
