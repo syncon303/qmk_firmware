@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_GESC, KC_F1,   KC_F2,   KC_F3,      KC_F4,     KC_F5,   KC_F6,          KC_MUTE, _______, _______, _______, _______,    _______,
         _______, _______, _______, SYMB_EURO,  _______,   KC_F7,   KC_F8,          _______, _______, _______, _______, SYMB_DEG,   _______,
         _______, KC_MINS, KC_EQL,  S(KC_MINS), S(KC_EQL), _______, _______,        _______, _______, KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC),
-        _______, KC_DEL,  KC_CUT,  KC_COPY,    KC_PASTE,  KC_MENU, _______,        _______, _______, _______, _______, _______,    _______,
+        _______, KC_DEL,  KC_CUT,  KC_COPY,    KC_PASTE,  KC_MENU, _______,        _______, _______, S(KC_9), S(KC_0), _______,    _______,
         _______, _______, _______, /*scroll*/                      _______,        _______,          KC_HOME, KC_PGDN, KC_PGUP,    KC_END,
                                                _______,   _______, _______,        _______, _______,
                                                           _______, _______,        _______, _______, _______
