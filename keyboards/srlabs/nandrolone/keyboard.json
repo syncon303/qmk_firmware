@@ -6,7 +6,7 @@
     "processor": "RP2040",
     "diode_direction": "ROW2COL",
     "features": {
-        "bootmagic": true,
+        "bootmagic": false,
         "command": false,
         "console": false,
         "extrakey": true,
@@ -16,7 +16,7 @@
         "joystick": false,
         "pointing_device": true,
         "oled": true,
-        "nkro": true
+        "nkro": false
     },
     "matrix_pins": {
         "cols": ["GP14", "GP13", "GP12", "GP11", "GP10", "GP9", "GP8"],

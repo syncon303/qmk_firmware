@@ -3,6 +3,7 @@
 
 #pragma once
 
+#define USB_POLLING_RATE_MS 4
 /* Split configuration */
 /* uses PIO driver */
 #define SERIAL_USART_FULL_DUPLEX

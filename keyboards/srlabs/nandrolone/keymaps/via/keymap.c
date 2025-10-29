@@ -43,6 +43,7 @@ enum planka_keycodes {
 #define SFT_ENT RSFT_T(KC_ENT)
 #define ALT_TAB LALT_T(KC_TAB)
 #define RALT_TAB RALT_T(KC_TAB)
+#define CTRL_ESC LCTL_T(KC_ESC)
 #define RALT_DEL RALT_T(KC_DEL)
 
 
@@ -80,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOW_DEL,        UP_BSPC,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
                                             KC_DEL,  SFT_SPC, ALT_TAB,        RALT_DEL,SFT_ENT,
-                                                     KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
+                                                     KC_SPC,  CTRL_ESC,       KC_RCTL, KC_ENT,  KC_BSPC
     ),
     /* Colemak default layer */
     [_COLEMAK] = LAYOUT(
@@ -90,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOW_DEL,        UP_BSPC,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
                                             KC_DEL,  SFT_SPC, ALT_TAB,        RALT_DEL,SFT_ENT,
-                                                     KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
+                                                     KC_SPC,  CTRL_ESC,       KC_RCTL, KC_ENT,  KC_BSPC
     ),
     [_GAMING] = LAYOUT(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    QK_GESC,        KC_GRV,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
@@ -99,12 +100,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,        KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
         KC_LCTL, NUMPAD,  KC_LGUI, /*scroll*/                 LOW_DEL,        UP_BSPC,          KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
                                             KC_DEL,  KC_LSFT, KC_LALT,        KC_RALT, SFT_ENT,
-                                                     KC_SPC,  KC_LCTL,        KC_RCTL, KC_ENT,  KC_BSPC
+                                                     KC_SPC,  CTRL_ESC,       KC_RCTL, KC_ENT,  KC_BSPC
     ),
     /* Numpad on right half */
     [_NUMPAD] = LAYOUT(
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,   _______,        KC_NUM,  _______, KC_KP_7, KC_KP_8, KC_KP_9,   KC_KP_SLASH,
-        _______, _______, _______, _______, _______,  _______, _______,        _______, _______, KC_KP_4, KC_KP_5, KC_KP_6,   KC_KP_ASTERISK,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,   KC_F6,          KC_NUM,  _______, KC_KP_7, KC_KP_8, KC_KP_9,   KC_KP_SLASH,
+        _______, _______, _______, _______, _______,  KC_F7,   KC_F8,          _______, _______, KC_KP_4, KC_KP_5, KC_KP_6,   KC_KP_ASTERISK,
         _______, _______, _______, _______, _______,  _______, _______,        _______, _______, KC_KP_1, KC_KP_2, KC_KP_3,   KC_KP_MINUS,
         _______, _______, KC_CUT,  KC_COPY, KC_PASTE, KC_MENU, _______,        _______, _______, KC_KP_0, XXXXXXX, KC_KP_DOT, KC_KP_PLUS,
         _______, _______, _______, /*scroll*/                  _______,        _______,          KC_MPRV, KC_MPLY, KC_MSTP,   KC_MNXT,
